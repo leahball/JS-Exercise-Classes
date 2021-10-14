@@ -46,8 +46,9 @@ class Person {
     this.name = name;
     this.age = age;
     this.stomach = [];
+    // this.edible = edible;
   }
-  eat() {
+  eat(edible) {
     if(this.stomach.length < 10){
       this.stomach.push(edible);
     }
@@ -59,7 +60,24 @@ class Person {
     return `${this.name}, ${this.age}`;
   }
 }
+const james = new Person ('James', 38);
+const ana = new Person ('Ana', 23);
 
+james.toString();
+james.eat('pizza');
+james.eat('pizza');
+james.eat('pizza');
+james.eat('pizza');
+james.eat('pizza');
+james.eat('pizza');
+james.eat('pizza');
+james.eat('pizza');
+james.eat('pizza');
+james.eat('pizza');
+james.eat('pizza');
+james.poop();
+
+console.log('Task 1:', james.stomach);
 
 
 /*
@@ -77,21 +95,44 @@ class Person {
 */
 
 class Car {
-  constructor(model, milesPerGallon){
-    this.model = model;
-    this.milesPerGallon = milesPerGallon;
-    this.tank = 0;
-    this.odometer = 0;
-  }
+    constructor(model, milesPerGallon){
+      this.model = model;
+      this.milesPerGallon = milesPerGallon;
+      this.tank = 0;
+      this.odometer = 0;
+    }
+  
   fill(gallons){
     this.tank = this.tank + gallons;
   }
+
   drive(distance){
-    this.odometer = this.odometer + distance;
-    
-    return `I ran out of fuel at the ${this.odometer} miles!`
+      this.odometer = this.odometer + distance;
+      const driveableMiles = this.milesPerGallon * this.tank;
+      if(distance <= this.driveableMiles){
+        this.odometer = this.tank - (distance / this.milesPerGallon);
+      }else{
+        this.odometer = this.odometer + driveableMiles;
+        this.tank = 0;
+        return `I ran out of fuel at ${this.odometer}.`;
+      };
+      return driveableMiles;
+    }
   }
-}
+  
+// const nissan =  new Car('Nissan', 15);
+// const chevy =  new Car('Chevy', 18);
+// const prius =  new Car('Prius', 35);
+
+// nissan.fill(5);
+// nissan.fill(10);
+// nissan.fill(15);
+
+// console.log('Nissan Tank', nissan.tank);
+
+// nissan.drive(20);
+// nissan.drive(20);
+// nissan.drive(200);
 
 /*
   TASK 3
@@ -106,8 +147,21 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
-  
+  constructor(attrs){
+  this.name = attrs.name;
+  this.age = attrs.age;
+  this.location = attrs.location;
+  }
+  speak(){
+    return `Hello my name is ${this.name}, I am from ${this.location}.`;
+  }
 }
+const bill = new Lambdasian({
+  name: 'Bill',
+  age: 42,
+  location: 'France'
+});
+console.log('Task 3:', bill.speak());
 
 /*
   TASK 4
