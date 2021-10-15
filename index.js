@@ -120,19 +120,20 @@ class Car {
     }
   }
   
-// const nissan =  new Car('Nissan', 15);
-// const chevy =  new Car('Chevy', 18);
-// const prius =  new Car('Prius', 35);
+const nissan =  new Car('Nissan', 15);
+const chevy =  new Car('Chevy', 18);
+const prius =  new Car('Prius', 35);
 
-// nissan.fill(5);
-// nissan.fill(10);
-// nissan.fill(15);
+nissan.fill(5);
+nissan.fill(10);
+nissan.fill(15);
 
-// console.log('Nissan Tank', nissan.tank);
 
-// nissan.drive(20);
-// nissan.drive(20);
+nissan.drive(20);
+nissan.drive(20);
 // nissan.drive(200);
+console.log('Nissan Tank', nissan.tank);
+
 
 /*
   TASK 3
@@ -177,8 +178,20 @@ console.log('Task 3:', bill.speak());
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
-
+class Instructor extends Lambdasian{
+  constructor(attrs){
+    super(attrs);
+    this.specialty = attrs.specialty;
+    this.favLanguage = attrs.favLanguage;
+    this.catchPhrase = attrs.catchPhrase;
+    // this.subject = attrs.subject;
+  }
+  demo(subject){
+    return `Today we are learning about ${subject}`;
+  }
+  grade(student, subject){
+    return `${student.name} receives a perfect score on ${subject}`;
+  }
 }
 /*
   TASK 5
@@ -195,8 +208,22 @@ class Instructor {
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
-   
+class Student extends Lambdasian{
+   constructor(attrs){
+     super(attrs);
+      this.previousBackground = attrs.previousBackground;
+      this.className = attrs.className;
+      this.favSubjects = attrs.favSubjects;
+   }
+  listSubjects(){
+    return `Loving ${this.favSubjects}!`;
+  }
+  PRAssignment(subject){
+    return `${this.name} has submitted a PR for ${subject}`;
+  }
+  sprintChallenge(subject){
+    return `${this.name} has begun sprint challenge on ${subject}`;
+  }
 }
 
 /*
