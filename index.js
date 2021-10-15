@@ -107,16 +107,16 @@ class Car {
   }
 
   drive(distance){
-      this.odometer = this.odometer + distance;
-      const driveableMiles = this.milesPerGallon * this.tank;
-      if(distance <= this.driveableMiles){
-        this.odometer = this.tank - (distance / this.milesPerGallon);
+      const driveMiles = this.milesPerGallon * this.tank;
+      if(distance <= driveMiles){
+        this.odometer = this.odometer + distance;
+        this.tank = this.tank - (distance / this.milesPerGallon);
       }else{
-        this.odometer = this.odometer + driveableMiles;
+        this.odometer = this.odometer + driveMiles;
         this.tank = 0;
         return `I ran out of fuel at ${this.odometer}.`;
-      };
-      return driveableMiles;
+      }
+      // return driveMiles;
     }
   }
   
@@ -130,9 +130,11 @@ nissan.fill(15);
 
 
 nissan.drive(20);
-nissan.drive(20);
+// nissan.drive(20);
 // nissan.drive(200);
 console.log('Nissan Tank', nissan.tank);
+console.log('Nissan Odometer', nissan.odometer);
+
 
 
 /*
@@ -239,7 +241,18 @@ class Student extends Lambdasian{
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
+class ProjectManager extends Instructor{
+    constructor(attrs){
+      super(attrs);
+      this.gradClassName = attrs.gradClassName;
+      this.favInstructor = attrs.favInstructor;
+    }
+    standUp(slackChannel){
+      return `${this.name} announces to ${slackChannel}, @channel standy times!`;
+    }
+    debugsCode(student, subject){
+      return `${this.name} debugs ${student.name}'s code on ${subject}`;
+    }
    
 }
 /*
